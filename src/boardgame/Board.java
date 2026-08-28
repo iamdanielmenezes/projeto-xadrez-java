@@ -27,4 +27,14 @@ public class Board {
 	public void setColumns(int columns) {
 		this.columns = columns;
 	}
+	
+	//metodo que retorna a peça quando damos uma linha e uma coluna. recebe linha e coluna separadamente
+	public Piece piece(int row, int column) {
+		return pieces[row][column];
+	}
+	
+	//Recebe uma posição e retorna a peça que está nessa posição do tabuleiro. recebe um objeto que já contém linha e coluna
+	public Piece piece(Position position) {
+		return pieces [position.getRow()] [position.getColumn()]; 
+	}
 }
