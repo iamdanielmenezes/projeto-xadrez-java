@@ -48,6 +48,20 @@ public class Board {
 		piece.position = position;
 	} 
 	
+	//metodo que remove peças do tabuleiiro, verifica se o valor da posição é nulo, se ainda não for, retira transformando a posição em nulo
+	public Piece removePiece(Position position) {
+		if (!positionExists(position)) {
+			throw new BoardException("Posição não existe");
+		}
+		if (piece(position) == null) {
+			return null;
+		}
+		Piece aux = piece(position);
+		aux.position = null;
+		pieces[position.getRow()][position.getColumn()] = null;
+		return aux; 
+		}
+	
 	private boolean positionExists(int row, int column) { //testa se uma posição existe pela linha e coluna
 		return row >= 0 && row < rows && column >= 0 && column < columns;
 	}
