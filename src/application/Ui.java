@@ -32,6 +32,13 @@ public class Ui {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+	// serve para limpar o console em cada jogada
+	// https://stackoverflow.com/questions/2979383/java-clear-the-console
+	public static void clearScreen() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush(); 
+	}
+
 	// metodo que le uma posição do usuario usando o scanner
 	public static ChessPosition readChessPosition(Scanner sc) {
 		try {
