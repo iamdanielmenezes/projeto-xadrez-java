@@ -39,6 +39,13 @@ public class ChessMatch {
 		return (ChessPiece)capturedPiece;
 	} 
 	
+	//imprime movientos possiveis
+	public boolean[][] possibleMoves(ChessPosition sourcePosition) {
+		Position position = sourcePosition.toPosition();
+		validateSourcePosition(position);
+		return board.piece(position).possibleMoves(); //retorna as posições possiveis para determinada peça na sua posição de origem
+	}
+	
 	//faz o movimento	
 	private Piece makeMove(Position source, Position target) {  //recebe a posição inicial e a posição de destino
 		Piece p = board.removePiece(source); //remove a peça na posição de origem

@@ -24,6 +24,11 @@ public class Program {
 				System.out.print("Origem: "); // Solicita ao usuario a posição da peça que será movimentada
 				ChessPosition source = Ui.readChessPosition(sc); // Lê a posição digitada e guarda como origem da peça
 				
+				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
+				Ui.clearScreen();
+				Ui.printBoard(chessMatch.getPieces(), possibleMoves); //usa o metodo da classe ui para pintar as posições possiveis que minha peça pode ir
+				
+				
 				System.out.println();
 				System.out.print("Destino: "); // Solicita ao usuario a posição de destino
 				ChessPosition target = Ui.readChessPosition(sc); 
