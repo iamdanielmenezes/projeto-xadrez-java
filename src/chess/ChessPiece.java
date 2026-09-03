@@ -2,6 +2,7 @@ package chess;
 
 import boardgame.Board;
 import boardgame.Piece;
+import boardgame.Position;
 
 //classe peça de xadrez
 public abstract class ChessPiece extends Piece{
@@ -17,4 +18,9 @@ public abstract class ChessPiece extends Piece{
 		return color;
 	}
 	
+	//checa se tem uma peça do oponente na posição
+	protected boolean isThereOpponentPiece(Position position) {
+		ChessPiece p = (ChessPiece)getBoard().piece(position);
+		return p != null && p.getColor() != color; //verifica se a posição é nula e se a peça na posição é da mesma cor da minha
+	}
 }
