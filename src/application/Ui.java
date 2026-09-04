@@ -69,6 +69,9 @@ public class Ui {
 		System.out.println("  a b c d e f g h");
 	}
 	
+	// Imprime o tabuleiro destacando os movimentos possíveis (sobrecarga de metodos)
+	// Para cada posição, verifica possibleMoves[i][j]:
+	// true = fundo azul | false = fundo normal.
 	public static void printBoard(ChessPiece[][] pieces, boolean[][] possibleMoves) {
 		
 		for (int i = 0; i < pieces.length; i++) {
