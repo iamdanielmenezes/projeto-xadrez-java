@@ -19,7 +19,7 @@ public class Program {
 		while (true) { // Mantém o jogo rodando continuamente, repetindo as jogadas
 			try {
 				Ui.clearScreen(); //limpa o console a cada jogada
-				Ui.printBoard(chessMatch.getPieces()); // Pega as peças atuais da partida e imprime o tabuleiro no console
+				Ui.printMatch(chessMatch); // Pega as peças atuais da partida e imprime o tabuleiro no console
 				System.out.println();
 				System.out.print("Origem: "); // Solicita ao usuario a posição da peça que será movimentada
 				ChessPosition source = Ui.readChessPosition(sc); // Lê a posição digitada e guarda como origem da peça

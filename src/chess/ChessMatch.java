@@ -9,11 +9,23 @@ import chess.pieces.Rook;
 //classe partida de xadrez
 public class ChessMatch {
 
+	private int turn;
+	private Color currentPlayer;
 	private Board board; //toda partida precisa de um tabuleiro
 	
 	public ChessMatch() {
 		board = new Board(8, 8); //construtor que define o tamanho do tabuleiro
+		turn = 1;
+		currentPlayer = Color.WHITE;
 		initialSetup();
+	}
+	
+	public int getTurn() {
+		return turn;
+	}
+	
+	public Color getCurrentPlayer() {
+		return currentPlayer;
 	}
 	
 	// Percorre todas as linhas e colunas do tabuleiro,
@@ -36,6 +48,7 @@ public class ChessMatch {
 		validateSourcePosition(source);
 		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
+		nextTurn();
 		return (ChessPiece)capturedPiece;
 	} 
 	
@@ -59,6 +72,9 @@ public class ChessMatch {
 		if (!board.thereIsAPiece(position)) {
 			throw new ChessException("Não existe peça na posição de origem");
 		}
+		if (currentPlayer != ((ChessPiece)board.piece(position)).getColor()) {
+			throw new ChessException("A peça escolhida não é sua");
+		}
 		if (!board.piece(position).isThereAnyPossibleMove()) { //se não tiver nenhum movimento possivel retorna a exceção
 			throw new ChessException("Não existe movimentos possiveis para a peça escolhida"); 
 		}
@@ -68,6 +84,12 @@ public class ChessMatch {
 	public void validateTargetPosition(Position source, Position target) {
 		if (!board.piece(source).possibleMove(target)) //se para a peça de origem, a posição de destino não for um movimento possivel ...
 		throw new ChessException("A peça escolhida não pode se mover para a posição de destino"); //significa que é invalido e lança a exceção
+	}
+	
+	//metodo para trocar de turno/jogador a cada jogada
+	private void nextTurn() {
+		turn++;
+		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE; //logica= se o jogador é color.WHITE agora vai ser color.BLACK etc...
 	}
 	
 	//recebe peça + posição de xadrez → converte a posição → coloca a peça no tabuleiro.
