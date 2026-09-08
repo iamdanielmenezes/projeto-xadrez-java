@@ -62,6 +62,10 @@ public class Ui {
 		System.out.println();
 		System.out.println("Turno: " + chessMatch.getTurn());
 		System.out.println("Esperando o jogador: " + chessMatch.getCurrentPlayer());
+		
+		if (chessMatch.getCheck()) {
+			System.out.println("CHECK!");
+		}
 	}
 
 	// Imprime o tabuleiro completo. percorre a matriz do tabuleiro linha por linha
