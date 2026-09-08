@@ -10,7 +10,7 @@ import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 
-public class Program {
+public class Program { 
 
 	public static void main(String[] args) {
 		
@@ -19,7 +19,7 @@ public class Program {
 		ChessMatch chessMatch = new ChessMatch(); // Cria a partida de xadrez e inicializa o tabuleiro com as peças
 		List<ChessPiece> captured = new ArrayList<>();
 		
-		while (true) { // Mantém o jogo rodando continuamente, repetindo as jogadas
+		while (!chessMatch.getCheckMate()) { // Mantém o jogo rodando continuamente, repetindo as jogadas
 			try {
 				Ui.clearScreen(); //limpa o console a cada jogada
 				Ui.printMatch(chessMatch, captured); // Pega as peças atuais da partida e imprime o tabuleiro no console
@@ -52,6 +52,8 @@ public class Program {
 				sc.nextLine(); 
 			}
 		}
+		Ui.clearScreen();
+		Ui.printMatch(chessMatch, captured);
 	}
 
 }

@@ -17,6 +17,7 @@ public class ChessMatch {
 	private Color currentPlayer;
 	private Board board; //toda partida precisa de um tabuleiro
 	private boolean check; //boolano para logica de check
+	private boolean checkMate; //booleano para logica de xeque mate
 	
 	private List<Piece> piecesOnTheBoard = new ArrayList<>();
 	private List<Piece> capturedPieces = new ArrayList<>(); 
@@ -38,6 +39,10 @@ public class ChessMatch {
 	
 	public boolean getCheck() {
 		return 	check;
+	}
+	
+	public boolean getCheckMate() {
+		return checkMate;
 	}
 	
 	// Percorre todas as linhas e colunas do tabuleiro,
@@ -69,7 +74,12 @@ public class ChessMatch {
 		
 		check = (testCheck(opponent(currentPlayer))) ? true : false;
 		
+		if (testCheckMate(opponent(currentPlayer))) {
+			checkMate = true;
+		}
+		else {
 		nextTurn();
+		}
 		return (ChessPiece)capturedPiece;
 	} 
 	
@@ -97,7 +107,7 @@ public class ChessMatch {
 	//dizfaz o movimento caso não seja permitido, como colcoar o proprio rei em xeque
 	private void undoMove(Position source, Position target, Piece capturedPiece) {
 		Piece p = board.removePiece(target); //tira a peça que foi movida do destino
-		board.placePiece(p, target); //devolve a peça capturada para a posição de origem
+		board.placePiece(p, source); //devolve a peça capturada para a posição de origem
 		
 		if (capturedPiece != null) { //se tiver capturado uma peça tem que devolvela
 			board.placePiece(capturedPiece, target);
@@ -157,6 +167,32 @@ public class ChessMatch {
 			 }
 		 }
 		 return false;
+	}
+	
+	//metodo de xeque mate
+	private boolean testCheckMate(Color color) {
+		if (!testCheck(color)) { //testa se não esta em xeque, poruqe tambem não vai estar em xeque mate
+			return false;
+		}
+		List<Piece> list = piecesOnTheBoard.stream().filter(x -> ((ChessPiece)x).getColor() == color).collect(Collectors.toList());
+		for (Piece p : list) { //se encontrar algum movimento que tira do xeque da falso, se não retorna true (esta em xeque)
+			boolean[][] mat = p.possibleMoves();
+			for (int i=0; i<board.getRows(); i++) {
+				for (int j=0; j<board.getColumns(); j++) {
+					if (mat[i][j]) {
+						Position source = ((ChessPiece)p).getChessPosition().toPosition();
+						Position target = new Position(i, j);
+						Piece capturedPiece = makeMove(source, target);
+						boolean testCheck = testCheck(color);
+						undoMove(source, target, capturedPiece);
+						if (!testCheck) {
+							return false;
+						}
+					}
+				}
+			} 
+		}
+		return true;
 	}
 	
 	//recebe peça + posição de xadrez → converte a posição → coloca a peça no tabuleiro.
