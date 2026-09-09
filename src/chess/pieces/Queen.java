@@ -5,15 +5,15 @@ import boardgame.Position;
 import chess.ChessPiece;
 import chess.Color;
 
-public class Bishop extends ChessPiece{ // classe "bispo"
-	
-	public Bishop(Board board, Color color) {
+public class Queen extends ChessPiece{
+
+	public Queen(Board board, Color color) {
 		super(board, color); 
 	}
 
 	@Override
 	public String toString() {
-		return "B"; 
+		return "Q"; 
 	}
 
 	@Override
@@ -21,6 +21,46 @@ public class Bishop extends ChessPiece{ // classe "bispo"
 		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()]; //matriz booleana com as dimenções do tabuleiro
 		
 		Position p = new Position(0, 0);
+		
+		//marcar as posições de verdadeiro ACIMA da peça
+		p.setValues(position.getRow() -1, position.getColumn()); //pega a posição da peça menos 1, que seria a posição de cima na matriz
+		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {//enquanto a posição existir e tiver vaga, ela vai ser verdadeira
+			mat[p.getRow()][p.getColumn()] = true;
+			p.setRow(p.getRow() - 1); //enquanto der verdadeiro(casas vazias) repete
+		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
+		
+		//marcar as posições de verdadeiro a ESQUERDA da peça
+		p.setValues(position.getRow(), position.getColumn() -1 ); //pega a posição da peça menos 1, que seria a posição a esquerda na matriz
+		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {//enquanto a posição existir e tiver vaga, ela vai ser verdadeira
+			mat[p.getRow()][p.getColumn()] = true;
+			p.setColumn(p.getColumn() - 1); //enquanto der verdadeiro(casas vazias) repete
+		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
+		
+		//marcar as posições de verdadeiro a DIREITA da peça
+		p.setValues(position.getRow(), position.getColumn() +1 ); //pega a posição da peça mais 1, que seria a posição a direita na matriz
+		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {//enquanto a posição existir e tiver vaga, ela vai ser verdadeira
+			mat[p.getRow()][p.getColumn()] = true;
+			p.setColumn(p.getColumn() + 1); //enquanto der verdadeiro(casas vazias) repete
+		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
+		
+		//marcar as posições de verdadeiro a ABAIXO da peça
+		p.setValues(position.getRow() +1, position.getColumn()); //pega a posição da peça mais 1, que seria a posição de baixo na matriz
+		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {//enquanto a posição existir e tiver vaga, ela vai ser verdadeira
+			mat[p.getRow()][p.getColumn()] = true;
+			p.setRow(p.getRow() + 1); //enquanto der verdadeiro(casas vazias) repete
+		}
+		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
+			mat[p.getRow()][p.getColumn()] = true;
+		}
 		
 		//marcar as posições de verdadeiro na diagonal pra cima a esquerda
 		p.setValues(position.getRow() -1, position.getColumn() -1); //pega a posição da peça menos 1, que seria a posição de cima na matriz
@@ -31,7 +71,7 @@ public class Bishop extends ChessPiece{ // classe "bispo"
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
-		
+							
 		//marcar as posições de verdadeiro na diagonal pra cima a direita
 		p.setValues(position.getRow() - 1, position.getColumn() +1 ); //pega a posição da peça menos 1, que seria a posição a esquerda na matriz
 		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {//enquanto a posição existir e tiver vaga, ela vai ser verdadeira
@@ -39,9 +79,9 @@ public class Bishop extends ChessPiece{ // classe "bispo"
 			p.setValues(p.getRow() - 1, p.getColumn() + 1);
 		}
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
-			mat[p.getRow()][p.getColumn()] = true;
+		mat[p.getRow()][p.getColumn()] = true;
 		}
-		
+							
 		//marcar as posições de verdadeiro na diagonal pra baixo a direita
 		p.setValues(position.getRow() + 1, position.getColumn() +1 ); //pega a posição da peça mais 1, que seria a posição a direita na matriz
 		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {//enquanto a posição existir e tiver vaga, ela vai ser verdadeira
@@ -51,7 +91,7 @@ public class Bishop extends ChessPiece{ // classe "bispo"
 		if (getBoard().positionExists(p) && isThereOpponentPiece(p)) {
 			mat[p.getRow()][p.getColumn()] = true;
 		}
-		
+							
 		//marcar as posições de verdadeiro na diagonal pra baixo a esquerda
 		p.setValues(position.getRow() +1, position.getColumn() - 1); //pega a posição da peça mais 1, que seria a posição de baixo na matriz
 		while(getBoard().positionExists(p) && !getBoard().thereIsAPiece(p)) {//enquanto a posição existir e tiver vaga, ela vai ser verdadeira

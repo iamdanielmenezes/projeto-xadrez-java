@@ -43,7 +43,7 @@ public class Pawn extends ChessPiece { // classe "Peão"
 				mat[p.getRow()][p.getColumn()] = true;
 			}
 			p.setValues(position.getRow() +2, position.getColumn()); //pega a posição da peça menos 1, que seria a posição de cima na matriz
-			Position p2 = new Position(position.getRow() +1, position.getColumn());
+			Position p2 = new Position(position.getRow() + 1, position.getColumn());
 			if (getBoard().positionExists(p) && !getBoard().thereIsAPiece(p) && getBoard().positionExists(p2) && !getBoard().thereIsAPiece(p2) && getMoveCount() == 0) {
 				mat[p.getRow()][p.getColumn()] = true;
 			}
