@@ -5,7 +5,7 @@ import boardgame.Position;
 import chess.ChessPiece;
 import chess.Color;
 
-public class Pawn extends ChessPiece { // classe "Peão"
+public class Pawn extends ChessPiece { // classe "Peão" 
 
 	public Pawn(Board board, Color color) {
 		super(board, color);
@@ -61,7 +61,7 @@ public class Pawn extends ChessPiece { // classe "Peão"
 	
 	@Override
 	public String toString() {
-		return "p";
+		return "P";
 	}
 
 }
