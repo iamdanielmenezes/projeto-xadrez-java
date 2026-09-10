@@ -14,7 +14,6 @@ import chess.pieces.Pawn;
 import chess.pieces.Queen;
 import chess.pieces.Rook;
 
-//classe partida de xadrez
 public class ChessMatch {
 
 	private int turn;

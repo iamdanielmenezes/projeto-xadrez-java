@@ -1,6 +1,5 @@
 package boardgame;
 
-//calsse tabuleiro
 public class Board {
 
 	private int rows;

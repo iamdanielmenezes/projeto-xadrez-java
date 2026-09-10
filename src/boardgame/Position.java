@@ -1,7 +1,5 @@
 package boardgame;
 
-//classe "posição" no pacote tabuleiro, vai controlar a posição das peças
-
 public class Position {
 	
 	private int row;
