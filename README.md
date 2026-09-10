@@ -68,16 +68,16 @@ Exemplo:
 Tabuleiro criado:
 <img width="927" height="501" alt="image" src="https://github.com/user-attachments/assets/43ee2677-c32e-4b67-9c82-516b1d63fb44" />
 
-Escolhendo origem e destino da peça, de 'd2' para 'd4' :
+Movendo a peça de d2 para d4:
 <img width="1022" height="616" alt="image" src="https://github.com/user-attachments/assets/448a9fe0-c8f2-4ad4-9da5-b75cef90900c" />
 
 Tabuleiro após o movimento:
 <img width="1017" height="616" alt="image" src="https://github.com/user-attachments/assets/c67a08b8-6014-42a4-a4f6-875a1d32f49c" />
 
-Capturando peça adversária, de 'd4' para 'e5' :
+Capturando uma peça adversária, de d4 para e5:
 <img width="1025" height="616" alt="image" src="https://github.com/user-attachments/assets/df10f944-adc5-4f3c-b97a-bfb5994eaf52" />
 
-Após a captura troca de turno e mostra no contador a peça capturada:
+Após a captura, o turno é alternado e a peça capturada é exibida:
 <img width="1022" height="617" alt="image" src="https://github.com/user-attachments/assets/5e8bf89f-29dd-4de9-903a-f08c2fe33e9c" />
 
 ---
