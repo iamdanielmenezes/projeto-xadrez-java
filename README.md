@@ -76,9 +76,10 @@ Tabuleiro após o movimento:
 
 Capturando peça adversária, de 'd4' para 'e5' :
 <img width="1025" height="616" alt="image" src="https://github.com/user-attachments/assets/df10f944-adc5-4f3c-b97a-bfb5994eaf52" />
+
+Após a captura troca de turno e mostra no contador a peça capturada:
 <img width="1022" height="617" alt="image" src="https://github.com/user-attachments/assets/5e8bf89f-29dd-4de9-903a-f08c2fe33e9c" />
 
-Após a captura troca de turno e mostra no contador a peça capturada.
 ---
 
 📌 Projeto desenvolvido para fins de estudo e prática dos fundamentos de **Java e Programação Orientada a Objetos**.
