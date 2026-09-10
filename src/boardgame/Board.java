@@ -1,5 +1,6 @@
 package boardgame;
 
+//calsse tabuleiro
 public class Board {
 
 	private int rows;
@@ -12,7 +13,7 @@ public class Board {
 		}
 		this.rows = rows;
 		this.columns = columns;
-		pieces = new Piece[rows][columns]; //a matriz de peças vai ser instanciada com a quantidade de linhas e colunas informadas
+		pieces = new Piece[rows][columns]; 
 	}
 
 	public int getRows() {
@@ -23,7 +24,6 @@ public class Board {
 		return columns;
 	}
 	
-	//metodo que retorna a peça quando damos uma linha e uma coluna. recebe linha e coluna separadamente
 	public Piece piece(int row, int column) {
 		if (!positionExists(row, column)) {
 			throw new BoardException("Posição não está no tabuleiro.");
@@ -31,7 +31,6 @@ public class Board {
 		return pieces[row][column];
 	}
 	
-	//Recebe uma posição e retorna a peça que está nessa posição do tabuleiro. recebe um objeto que já contém linha e coluna
 	public Piece piece(Position position) {
 		if (!positionExists(position)) {
 			throw new BoardException("Posição não está no tabuleiro.");
@@ -39,7 +38,6 @@ public class Board {
 		return pieces [position.getRow()] [position.getColumn()]; 
 	}
 	
-	//metodo que pega a matriz de peças(atributo dessa classe) na posição da linha e coluna dada e atribuir a peça conrrespondente
 	public void placePiece(Piece piece, Position position) {
 		if (thereIsAPiece(position)) {
 			throw new BoardException("Ja tem uma peça na posição " + position);
@@ -48,7 +46,6 @@ public class Board {
 		piece.position = position;
 	} 
 	
-	//metodo que remove peças do tabuleiiro, verifica se o valor da posição é nulo, se ainda não for, retira transformando a posição em nulo
 	public Piece removePiece(Position position) {
 		if (!positionExists(position)) {
 			throw new BoardException("Posição não existe");
@@ -62,15 +59,15 @@ public class Board {
 		return aux; 
 		}
 	
-	private boolean positionExists(int row, int column) { //testa se uma posição existe pela linha e coluna
+	private boolean positionExists(int row, int column) {
 		return row >= 0 && row < rows && column >= 0 && column < columns;
 	}
 	
-	public boolean positionExists(Position position) { //testa se uma posição existe pela posição
+	public boolean positionExists(Position position) { 
 		return positionExists(position.getRow(), position.getColumn());
 	}
 	
-	public boolean thereIsAPiece(Position position) { //testa se tem uma peça na posição dada
+	public boolean thereIsAPiece(Position position) { 
 		if (!positionExists(position)) {
 			throw new BoardException("Posição não está no tabuleiro.");
 		}

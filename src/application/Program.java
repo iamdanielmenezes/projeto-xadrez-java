@@ -14,29 +14,29 @@ public class Program {
 
 	public static void main(String[] args) {
 		
-		Scanner sc = new Scanner(System.in); // Scanner usado para ler as jogadas digitadas pelo jogador
+		Scanner sc = new Scanner(System.in); 
 		
-		ChessMatch chessMatch = new ChessMatch(); // Cria a partida de xadrez e inicializa o tabuleiro com as peças
+		ChessMatch chessMatch = new ChessMatch(); 
 		List<ChessPiece> captured = new ArrayList<>();
 		
-		while (!chessMatch.getCheckMate()) { // Mantém o jogo rodando continuamente, repetindo as jogadas
+		while (!chessMatch.getCheckMate()) { 
 			try {
-				Ui.clearScreen(); //limpa o console a cada jogada
-				Ui.printMatch(chessMatch, captured); // Pega as peças atuais da partida e imprime o tabuleiro no console
+				Ui.clearScreen(); 
+				Ui.printMatch(chessMatch, captured); 
 				System.out.println();
-				System.out.print("Origem: "); // Solicita ao usuario a posição da peça que será movimentada
-				ChessPosition source = Ui.readChessPosition(sc); // Lê a posição digitada e guarda como origem da peça
+				System.out.print("Origem: "); 
+				ChessPosition source = Ui.readChessPosition(sc); 
 				
 				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
 				Ui.clearScreen();
-				Ui.printBoard(chessMatch.getPieces(), possibleMoves); //usa o metodo da classe ui para pintar as posições possiveis que minha peça pode ir
+				Ui.printBoard(chessMatch.getPieces(), possibleMoves); 
 				
 				
 				System.out.println();
-				System.out.print("Destino: "); // Solicita ao usuario a posição de destino
+				System.out.print("Destino: "); 
 				ChessPosition target = Ui.readChessPosition(sc); 
 				
-				// Executa o movimento da origem até o destino e guarda a peça capturada, se houver
+				
 				ChessPiece capturedPiece = chessMatch.performChessMove(source, target); 
 				
 				if (capturedPiece != null) {

@@ -4,7 +4,6 @@ import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
 
-//classe peça de xadrez
 public abstract class ChessPiece extends Piece{
 
 	private Color color;
@@ -25,7 +24,7 @@ public abstract class ChessPiece extends Piece{
 	
 	public void increaseMoveCount() {
 		moveCount++;
-	}
+	} 
 	
 	public void decreaseMoveCount() {
 		moveCount--;
@@ -35,9 +34,8 @@ public abstract class ChessPiece extends Piece{
 		return ChessPosition.fromPosition(position);
 	}
 	
-	//checa se tem uma peça do oponente na posição
 	protected boolean isThereOpponentPiece(Position position) {
 		ChessPiece p = (ChessPiece)getBoard().piece(position);
-		return p != null && p.getColor() != color; //verifica se a posição é nula e se a peça na posição é da mesma cor da minha
+		return p != null && p.getColor() != color;
 	}
 }
